@@ -1,1 +1,15 @@
-{{object_list.first.timestamp|timesince}}
+{% include "tweets/search_form.html" %} <br/>
+{% for object in object_list%}
+    <p>{{object.content}} <br/>
+        {{object.user}} <br/>
+        {{object.timestamp|timesince}} ago
+    
+    </p> <br/><br/>
+{%empty %}
+    {% if request.GET.q %}
+        <p>No Tweets Found</p>
+    {% else % }
+        <p> No tweets yet</p>
+    {% endif %}
+
+{%endfor %}
